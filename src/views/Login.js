@@ -10,8 +10,8 @@ import logoImg from "assets/img/logo.svg";
 
 function Login({ location }) {
   const [isError, setIsError] = useState(false);
-  const [username, setusername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setusername] = useState("chepe");
+  const [password, setPassword] = useState("caracola_mágica@12345");
   const { authTokens, setAuthTokens } = useAuth();
   const referer = location?.state?.referer || "/admin";
 
