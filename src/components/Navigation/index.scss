@@ -1,0 +1,71 @@
+.Navigation {
+  display: flex;
+
+  height: 64px;
+  padding: 8px 16px;
+
+  background-color: #333333;
+}
+
+.Navigation__List {
+  display: flex;
+
+  align-items: center;
+  flex: 1;
+
+  width: 100%;
+}
+
+.Navigation__List_El > a {
+  font-size: 16px;
+  font-weight: 500;
+
+  display: block;
+
+  margin-right: 16px;
+  padding: 16px;
+
+  color: #ffffff;
+  border-radius: 10px;
+
+  @include transition();
+  @include feature-to('hover') {
+    &:hover {
+      background-color: #777777;
+    }
+  }
+}
+
+.Navigation__Tools {
+  display: flex;
+
+  justify-content: flex-end;
+  flex: 1;
+
+  width: 100%;
+}
+
+.Navigation__Tools_El > button {
+  font-size: 16px;
+  font-weight: 500;
+
+  display: block;
+
+  margin-right: 16px;
+  padding: 16px;
+
+  cursor: pointer;
+
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  background-color: #6371c7;
+
+  @include transition();
+  @include feature-to('hover') {
+    &:hover {
+      background-color: #4f5ba3;
+    }
+  }
+}

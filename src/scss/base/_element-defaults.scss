@@ -1,0 +1,93 @@
+/**
+ *  Element defaults
+ */
+
+html {
+  font-display: swap;
+  // overflow-x: hidden;
+}
+
+html,
+body {
+  // width: 100%;
+  // height: 100%;
+  color: #000000;
+  background: #ffffff;
+}
+
+body {
+  //overflow-x: hidden;
+  font-weight: normal;
+}
+
+input,
+textarea,
+select {
+  // -webkit-appearance: none;
+  // -webkit-border-radius: 0;
+  // border-radius: 0;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+input {
+  &:focus {
+    outline: rgb(59, 153, 252) auto 5px;
+  }
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: normal;
+
+  font-variant-ligatures: none !important;
+}
+
+p,
+span,
+code,
+li,
+ul,
+ol,
+i,
+a {
+  font-variant-ligatures: none !important;
+}
+
+ul {
+  list-style-type: none;
+}
+
+input,
+button,
+textarea {
+  outline: none;
+}
+
+.swiper-container {
+  z-index: 1000;
+
+  @include transform(translate3d(0, 0, 0));
+}
+
+/* Here you can add default styles to forms elements, text elements and such */
+
+img {
+  max-width: 100%;
+}
+
+.AppLoading {
+  min-height: 100vh;
+
+  background-color: #ffffff;
+}

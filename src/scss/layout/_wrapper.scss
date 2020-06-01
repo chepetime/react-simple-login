@@ -1,0 +1,26 @@
+/**
+ * Wrapper variables
+ */
+
+$wrapper-padding: 16px;
+$wrapper-reg: 1094px+32px;
+
+/**
+ * Wrapper
+ */
+
+.Wrapper {
+  position: static;
+
+  overflow: visible;
+
+  width: 100%;
+  max-width: 100%;
+  max-width: $wrapper-reg;
+  margin: 0 auto;
+  padding: 0 $wrapper-padding;
+
+  @include respond-to('medium') {
+    padding: 0;
+  }
+}
