@@ -4,24 +4,20 @@ import Routes from "Routes";
 
 import Navigation from "components/Navigation/";
 
-import AuthContextProvider from "providers/AuthContextProvider";
-
 function App() {
   return (
-    <AuthContextProvider>
-      <BrowserRouter>
-        <Suspense fallback={<div className="AppLoading"></div>}>
-          <div className="App">
-            <div className="Canvas">
-              <Navigation />
-              <Switch>
-                <Routes />
-              </Switch>
-            </div>
+    <BrowserRouter>
+      <Suspense fallback={<div className="AppLoading"></div>}>
+        <div className="App">
+          <div className="Canvas">
+            <Navigation />
+            <Switch>
+              <Routes />
+            </Switch>
           </div>
-        </Suspense>
-      </BrowserRouter>
-    </AuthContextProvider>
+        </div>
+      </Suspense>
+    </BrowserRouter>
   );
 }
 

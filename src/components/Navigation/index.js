@@ -1,13 +1,15 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-import { useAuth } from "context/auth";
+import { useDispatch, useSelector } from "react-redux";
+import { getAuthToken, logout } from "features/auth/authSlice";
 
 function Navigation() {
-  const { authTokens, setAuthTokens } = useAuth();
+  const dispatch = useDispatch();
+  const { authToken } = useSelector(getAuthToken);
 
   function logOut() {
-    setAuthTokens("");
+    dispatch(logout());
   }
 
   return (
@@ -16,7 +18,7 @@ function Navigation() {
         <li className="Navigation__List_El">
           <NavLink to="/">Home Page</NavLink>
         </li>
-        {authTokens && (
+        {authToken && (
           <>
             <li className="Navigation__List_El">
               <NavLink to="/admin">Admin Page</NavLink>
@@ -29,14 +31,14 @@ function Navigation() {
             </li>
           </>
         )}
-        {!authTokens && (
+        {!authToken && (
           <li className="Navigation__List_El">
             <NavLink to="/login">Login</NavLink>
           </li>
         )}
       </ul>
       <ul className="Navigation__Tools">
-        {authTokens && (
+        {authToken && (
           <li className="Navigation__Tools_El">
             <button onClick={() => logOut()}>Log Out</button>
           </li>

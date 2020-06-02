@@ -1,4 +1,33 @@
 {
+  "private": true,
+  "name": "react-simple-login",
+  "license": "MIT",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "react-scripts build",
+    "css:csscomb": "csscomb src/components/*",
+    "eject": "react-scripts eject",
+    "serve": "react-scripts start",
+    "start": "react-scripts start",
+    "test": "react-scripts test"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "1.3.6",
+    "@testing-library/jest-dom": "5.8.0",
+    "@testing-library/user-event": "10.4.0",
+    "axios": "0.19.2",
+    "node-sass": "4.14.1",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-redux": "^7.2.0",
+    "react-router-dom": "5.2.0",
+    "react-scripts": "3.4.1",
+    "redux-logger": "3.0.6",
+    "redux-persist": "6.0.0"
+  },
+  "devDependencies": {
+    "@testing-library/react": "10.0.4"
+  },
   "browserslist": {
     "development": [
       "last 1 chrome version",
@@ -11,32 +40,7 @@
       "not op_mini all"
     ]
   },
-  "dependencies": {
-    "@testing-library/jest-dom": "5.8.0",
-    "@testing-library/user-event": "10.4.0",
-    "axios": "0.19.2",
-    "node-sass": "4.14.1",
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
-    "react-router-dom": "5.2.0",
-    "react-scripts": "3.4.1"
-  },
-  "devDependencies": {
-    "@testing-library/react": "10.0.4"
-  },
   "eslintConfig": {
     "extends": "react-app"
-  },
-  "license": "MIT",
-  "name": "react-simple-login",
-  "private": true,
-  "scripts": {
-    "build": "react-scripts build",
-    "css:csscomb": "csscomb src/components/*",
-    "eject": "react-scripts eject",
-    "serve": "react-scripts start",
-    "start": "react-scripts start",
-    "test": "react-scripts test"
-  },
-  "version": "0.1.0"
+  }
 }

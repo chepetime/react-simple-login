@@ -1,18 +1,24 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
-import { useAuth } from "context/auth";
+
+import { useSelector } from "react-redux";
+import { getAuthToken } from "features/auth/authSlice";
 
 function PrivateRoute({ component: Component, ...rest }) {
-  const { authTokens } = useAuth();
-
-  if (!authTokens) {
-    return <Redirect to={{ pathname: "/login" }} />;
-  }
+  const { authToken } = useSelector(getAuthToken);
 
   return (
     <Route
       {...rest}
-      render={(props) => authTokens && <Component {...props} />}
+      render={(props) =>
+        authToken ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{ pathname: "/login", state: { referrer: props.location } }}
+          />
+        )
+      }
     />
   );
 }

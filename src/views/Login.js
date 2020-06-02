@@ -1,39 +1,24 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
-
-import { login } from "services";
+import { useDispatch, useSelector } from "react-redux";
+import { getAuthToken, login } from "features/auth/authSlice";
 
 import Page from "components/Page";
 
-import { useAuth } from "context/auth";
 import logoImg from "assets/img/logo.svg";
 
 function Login({ location }) {
-  const [isError, setIsError] = useState(false);
+  const dispatch = useDispatch();
   const [username, setusername] = useState("chepe");
   const [password, setPassword] = useState("caracola_mágica@12345");
-  const [loading, setloading] = useState(false);
-  const { authTokens, setAuthTokens } = useAuth();
+
+  const { authToken, loading, hasErrors } = useSelector(getAuthToken);
 
   const referer = location?.state?.referer || "/admin";
 
   function postLogin() {
-    if (loading) {
-      return false;
-    }
-
-    setloading(true);
-
-    setTimeout(() => {
-      // This should be an API Call with success
-      if (login({ username, password })) {
-        setloading(false);
-        setAuthTokens("fake-token");
-      } else {
-        setloading(false);
-        setIsError(true);
-      }
-    }, 3000);
+    if (loading) return false;
+    dispatch(login({ username, password }));
   }
 
   function hadleSubmit(e) {
@@ -41,7 +26,7 @@ function Login({ location }) {
     postLogin();
   }
 
-  if (authTokens) {
+  if (authToken) {
     return <Redirect to={referer} />;
   }
 
@@ -70,7 +55,7 @@ function Login({ location }) {
             {loading ? "Loading…" : "Sign In"}
           </button>
         </form>
-        {isError && <p>The username or password provided were incorrect!</p>}
+        {hasErrors && <p>The username or password provided were incorrect!</p>}
       </div>
     </Page>
   );
