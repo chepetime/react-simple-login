@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 import { login } from "services";
 
@@ -12,24 +12,44 @@ function Login({ location }) {
   const [isError, setIsError] = useState(false);
   const [username, setusername] = useState("chepe");
   const [password, setPassword] = useState("caracola_mágica@12345");
+  const [loading, setloading] = useState(false);
   const { authTokens, setAuthTokens } = useAuth();
+
   const referer = location?.state?.referer || "/admin";
 
   function postLogin() {
-    // This should be an API Call with success
-    if (login({ username, password })) {
-      setAuthTokens("fake-token");
-    } else {
-      setIsError(true);
+    if (loading) {
+      return false;
     }
+
+    setloading(true);
+
+    setTimeout(() => {
+      // This should be an API Call with success
+      if (login({ username, password })) {
+        setloading(false);
+        setAuthTokens("fake-token");
+      } else {
+        setloading(false);
+        setIsError(true);
+      }
+    }, 3000);
+  }
+
+  function hadleSubmit(e) {
+    e.preventDefault();
+    postLogin();
+  }
+
+  if (authTokens) {
+    return <Redirect to={referer} />;
   }
 
   return (
     <Page>
-      {authTokens && <Redirect to={referer} />}
       <div className="Card">
         <img src={logoImg} className="Logo" alt="Logo" />
-        <form className="Form">
+        <form className="Form" onSubmit={(e) => hadleSubmit(e)}>
           <input
             type="username"
             value={username}
@@ -46,11 +66,10 @@ function Login({ location }) {
             }}
             placeholder="password"
           />
-          <button className="Button" onClick={postLogin}>
-            Sign In
+          <button type="submit" className="Button">
+            {loading ? "Loading…" : "Sign In"}
           </button>
         </form>
-        <Link to="/signup">Don't have an account?</Link>
         {isError && <p>The username or password provided were incorrect!</p>}
       </div>
     </Page>

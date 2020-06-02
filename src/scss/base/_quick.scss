@@ -19,28 +19,52 @@
 }
 
 input {
-  font-size: 0.8rem;
+  font-size: 1rem;
 
-  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
+
+  overflow: hidden;
+
+  margin-bottom: 2rem;
   padding: 1rem;
 
-  border: 1px solid #999999;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  outline: 0 !important;
+  background-color: #eeeeee;
+
+  @include transition();
+
+  &:focus {
+    z-index: 2;
+
+    border-color: #6371c7;
+  }
 }
 
 .Button {
-  font-size: 0.8rem;
-  font-weight: 700;
+  font-size: 1rem;
+  font-weight: 500;
 
-  width: 100%;
-  margin-bottom: 1rem;
+  display: block;
+
   padding: 1rem;
 
   cursor: pointer;
 
-  color: white;
-  border-color: #3f4eae;
-  border-radius: 3px;
-  background: linear-gradient(to bottom, #6371c7, #5563c1);
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  background-color: #6371c7;
+
+  @include transition();
+  @include feature-to('hover') {
+    &:hover {
+      background-color: #4f5ba3;
+    }
+  }
 }
 
 .Logo {
