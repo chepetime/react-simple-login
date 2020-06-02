@@ -12,7 +12,7 @@ import Reports from "views/Reports";
 import Secrets from "views/Secrets";
 
 const NoMatchPage = () => {
-  return <Redirect to="/login" />;
+  return <Redirect to="/" />;
 };
 
 function Routes() {
