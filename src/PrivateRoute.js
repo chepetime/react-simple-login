@@ -5,14 +5,18 @@ import { useAuth } from "context/auth";
 function PrivateRoute({ component: Component, ...rest }) {
   const { authTokens } = useAuth();
 
-  if (!authTokens) {
-    return <Redirect to={{ pathname: "/login" }} />;
-  }
-
   return (
     <Route
       {...rest}
-      render={(props) => authTokens && <Component {...props} />}
+      render={(props) =>
+        authTokens ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{ pathname: "/login", state: { referrer: props.location } }}
+          />
+        )
+      }
     />
   );
 }
