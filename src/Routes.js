@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { Route } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { getAuthToken } from "features/auth/authSlice";
+import useAuth from "hooks/UseAuth";
 
 import PrivateRoute from "PrivateRoute";
 
@@ -13,7 +12,7 @@ import Reports from "views/Reports";
 import Secrets from "views/Secrets";
 
 function Routes() {
-  const { authToken } = useSelector(getAuthToken);
+  const { authToken } = useAuth();
 
   useEffect(() => {
     const minutes = 5; // Probably should go on an .env param

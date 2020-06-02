@@ -1,29 +1,21 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { getAuthToken, login } from "features/auth/authSlice";
 
+import useAuth from "hooks/UseAuth";
 import Page from "components/Page";
 
 import logoImg from "assets/img/logo.svg";
 
 function Login({ location }) {
-  const dispatch = useDispatch();
+  const { authToken, loading, hasErrors, login } = useAuth();
   const [username, setusername] = useState("chepe");
   const [password, setPassword] = useState("caracola_mágica@12345");
 
-  const { authToken, loading, hasErrors } = useSelector(getAuthToken);
-
   const referer = location?.state?.referer || "/admin";
-
-  function postLogin() {
-    if (loading) return false;
-    dispatch(login({ username, password }));
-  }
 
   function hadleSubmit(e) {
     e.preventDefault();
-    postLogin();
+    login({ username, password });
   }
 
   if (authToken) {

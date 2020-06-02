@@ -1,11 +1,10 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 
-import { useSelector } from "react-redux";
-import { getAuthToken } from "features/auth/authSlice";
+import useAuth from "hooks/UseAuth";
 
 function PrivateRoute({ component: Component, ...rest }) {
-  const { authToken } = useSelector(getAuthToken);
+  const { authToken } = useAuth();
 
   return (
     <Route
